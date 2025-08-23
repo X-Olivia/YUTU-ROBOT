@@ -8,8 +8,8 @@ from pathlib import Path
 # Project paths
 PROJECT_ROOT = Path(__file__).parent
 MODEL_PATH = PROJECT_ROOT / "runs" / "detect" / "train" / "weights" / "best.pt"
-VIDEO_PATH = PROJECT_ROOT / "test_video/IMG_1252.MOV"
-OUTPUT_PATH = PROJECT_ROOT / "output1"
+VIDEO_PATH = PROJECT_ROOT / "test_video/IMG_1251.MOV"
+OUTPUT_PATH = PROJECT_ROOT / "output"
 
 # Model settings
 MODEL_CONFIDENCE = 0.25
@@ -41,6 +41,13 @@ BOX_THICKNESS = 2
 TEXT_THICKNESS = 2
 TEXT_SCALE = 1.0
 TRACK_LENGTH = 30  # Number of frames to show track history
+
+# Trajectory analysis settings for grabbed item detection
+TRAJECTORY_HISTORY_LENGTH = 100  # Maximum frames to keep in track history
+MIN_TRAJECTORY_LENGTH = 100     # Minimum trajectory length in pixels to consider as moved (not used - relative comparison instead)
+MIN_MOVEMENT_THRESHOLD = 20     # Minimum movement distance in pixels to consider as active (not used - relative comparison instead)
+GRABBED_ITEM_DISPLAY = True     # Whether to display grabbed item information
+TRAJECTORY_VISUALIZATION = True # Whether to visualize trajectories
 
 # Output settings
 SAVE_VIDEO = True

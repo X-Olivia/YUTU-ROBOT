@@ -51,7 +51,8 @@ def main():
         tracker = HygieneTracker(
             track_activation_threshold=TRACK_ACTIVATION_THRESHOLD,
             track_lost_delay=TRACK_LOST_DELAY,
-            track_frame_rate=TRACK_FRAME_RATE
+            track_frame_rate=TRACK_FRAME_RATE,
+            detector=detector
         )
         
         # No counting line needed
@@ -89,7 +90,7 @@ def main():
             detections = tracker.update_tracks(detections, frame)
             
             # Annotate frame
-            frame = annotator.annotate_frame(frame, detections, detector)
+            frame = annotator.annotate_frame(frame, detections, detector, tracker)
             
             # No counting line annotation needed
             
@@ -97,11 +98,18 @@ def main():
             processor.write_frame(frame)
             processed_frames += 1
             
-            # Progress update
+            # Progress update with grabbed item info
             if frame_count % 100 == 0:
                 elapsed = time.time() - start_time
                 fps = processed_frames / elapsed
-                print(f" Processed {frame_count} frames, FPS: {fps:.2f}")
+                
+                # Get current grabbed item info
+                grabbed_item = tracker.get_grabbed_item_info()
+                if grabbed_item:
+                    item_info = f"Grabbed: {detector.get_class_names().get(grabbed_item['class_id'], 'Unknown')} #{grabbed_item['track_id']}"
+                    print(f" Processed {frame_count} frames, FPS: {fps:.2f} | {item_info}")
+                else:
+                    print(f" Processed {frame_count} frames, FPS: {fps:.2f}")
         
         # Cleanup
         processor.close_writer()
@@ -117,6 +125,20 @@ def main():
         print(f" Total frames processed: {processed_frames}")
         print(f" Output saved to: {OUTPUT_PATH}")
         print(f" Tracking information displayed in video")
+        
+        # Display final grabbed item information
+        final_grabbed_item = tracker.get_grabbed_item_info()
+        if final_grabbed_item:
+            print("\n Grabbed Item Analysis:")
+            print("-" * 30)
+            item_name = detector.get_class_names().get(final_grabbed_item['class_id'], 'Unknown')
+            print(f" Item: {item_name}")
+            print(f" Track ID: #{final_grabbed_item['track_id']}")
+            print(f" Trajectory Length: {final_grabbed_item['trajectory_length']:.1f} pixels")
+            print(f" Duration: {final_grabbed_item['duration_frames']} frames")
+            print(f" Frame Range: {final_grabbed_item['start_frame']} - {final_grabbed_item['end_frame']}")
+        else:
+            print("\n No significant item movement detected")
         
     except KeyboardInterrupt:
         print("\n Processing interrupted by user")
@@ -134,7 +156,7 @@ def run_single_frame_test():
     
     # Initialize components
     detector = HygieneDetector(str(MODEL_PATH))
-    tracker = HygieneTracker()
+    tracker = HygieneTracker(detector=detector)
     
     # Load video and get first frame
     processor = VideoProcessor(str(VIDEO_PATH))
