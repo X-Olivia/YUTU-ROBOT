@@ -1,0 +1,7 @@
+ultralytics==8.3.19
+supervision[assets]==0.24.0
+numpy
+opencv-python
+Pillow
+torch
+torchvision 
