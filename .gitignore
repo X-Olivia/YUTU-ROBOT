@@ -1,0 +1,11 @@
+# Python env
+venv/
+**/venv/
+__pycache__/
+
+# Videos & huge binaries
+*.mov
+*.mp4
+*.avi
+*.mkv
+*.dylib
