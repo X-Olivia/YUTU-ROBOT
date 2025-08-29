@@ -48,6 +48,5 @@ This week completed the procurement of chassis and inventory management related 
    - Started YOLO-based object detection experiments, target categories: day/night sanitary pads, panty liners, tampons, pain relief medication.
    - Explored **vision + weight sensor** redundant design to solve "empty packaging" recognition problem.  
    - Designed data collection and annotation workflow, built small-scale dataset for training.  
-For details, see:
----
+
 
