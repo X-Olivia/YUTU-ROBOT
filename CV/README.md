@@ -13,7 +13,8 @@ CV/
 ├── tracking/
 │   └── tracker.py   # 卫生用品跟踪模块
 ├── utils/
-│   └── video_processor.py   # 视频处理工具
+│   ├── video_io.py          # 视频I/O工具
+│   └── video_annotation.py  # 视频注释工具
 ├── main.py                  # 主运行文件
 ├── setup.sh                 # 环境配置脚本
 ├── runs/                    # 训练好的模型

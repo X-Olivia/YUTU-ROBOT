@@ -1,4 +1,4 @@
-# Computer Vision Development Log Week 1
+# Storage module Development Log Week 1
 
 ## Initial Design Concept
 The initial inventory recognition solution was a combination of **weight sensor + camera**:
@@ -88,4 +88,6 @@ Looking back at methods attempted but failed during development, analyzing failu
 
 ---
 
-**Summary**: Computer vision development has gradually evolved from "static snapshot + OCR" to "video tracking + package matching + weight redundancy", better meeting actual usage requirements in terms of flexibility and accuracy. Practice more on seemingly impossible things - if you fail, you better understand the reasons for failure; if you succeed, that's even better.
+**Summary**: Computer vision development has gradually evolved from "static snapshot + OCR" to "video tracking + package matching + weight redundancy", better meeting actual usage requirements in terms of flexibility and accuracy.
+
+Practice on seemingly impossible things - if fail, better understand the reasons for failure; if succeed, that's even better.

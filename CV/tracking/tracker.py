@@ -40,6 +40,7 @@ class HygieneTracker:
         
         # Trajectory analysis data structures
         self.track_history = {}  # {track_id: [(frame_num, x, y, class_id), ...]}
+        self.track_boxes = {}  # {track_id: [(frame_num, bbox, confidence, class_id), ...]}
         self.trajectory_lengths = {}  # {track_id: float}
         self.grabbed_item_info = None  # Current grabbed item information
         self.frame_count = 0
@@ -84,13 +85,21 @@ class HygieneTracker:
                 # Initialize track history if not exists
                 if track_id not in self.track_history:
                     self.track_history[track_id] = []
+                if track_id not in self.track_boxes:
+                    self.track_boxes[track_id] = []
                 
                 # Add current position to history
                 self.track_history[track_id].append((self.frame_count, x, y, class_id))
                 
+                # Add bounding box and confidence to boxes history
+                confidence = detections.confidence[i] if detections.confidence is not None else 0.0
+                self.track_boxes[track_id].append((self.frame_count, bbox.copy(), confidence, class_id))
+                
                 # Limit history length
                 if len(self.track_history[track_id]) > TRAJECTORY_HISTORY_LENGTH:
                     self.track_history[track_id].pop(0)
+                if len(self.track_boxes[track_id]) > TRAJECTORY_HISTORY_LENGTH:
+                    self.track_boxes[track_id].pop(0)
                 
                 # Calculate trajectory length
                 self._calculate_trajectory_length(track_id)
@@ -157,7 +166,8 @@ class HygieneTracker:
                     'trajectory_length': best_length,
                     'start_frame': start_frame,
                     'end_frame': end_frame,
-                    'duration_frames': end_frame - start_frame + 1
+                    'duration_frames': end_frame - start_frame + 1,
+                    'track_boxes': self.track_boxes.get(best_track_id, [])
                 }
         else:
             self.grabbed_item_info = None

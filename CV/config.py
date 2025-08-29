@@ -8,7 +8,7 @@ from pathlib import Path
 # Project paths
 PROJECT_ROOT = Path(__file__).parent
 MODEL_PATH = PROJECT_ROOT / "runs" / "detect" / "train" / "weights" / "best.pt"
-VIDEO_PATH = PROJECT_ROOT / "test_video/IMG_1251.MOV"
+VIDEO_PATH = PROJECT_ROOT / "test_video/IMG_1252.MOV"
 OUTPUT_PATH = PROJECT_ROOT / "output"
 
 # Model settings
@@ -52,4 +52,20 @@ TRAJECTORY_VISUALIZATION = True # Whether to visualize trajectories
 # Output settings
 SAVE_VIDEO = True
 SAVE_STATS = False  # No statistics needed
-STATS_FORMAT = 'json'  # 'json' or 'csv' 
+STATS_FORMAT = 'json'  # 'json' or 'csv'
+
+# Item matching settings
+ITEM_MATCHING_ENABLED = True
+STORAGE_ITEMS_DIR = PROJECT_ROOT / "storage_items"
+STORAGE_ITEMS_PROCESSED_DIR = PROJECT_ROOT / "storage_items_processed"
+STORAGE_PREPROCESSING_ENABLED = True
+MAX_MATCHING_FRAMES = 5
+COLOR_SIMILARITY_THRESHOLD = 0.5
+EXPORT_MATCHING_FRAMES = True  # Export frames used for matching
+MATCHING_FRAMES_OUTPUT_DIR = PROJECT_ROOT / "output" / "matching_frames"
+
+# ORB matching settings
+ORB_NFEATURES = 1000
+ORB_MATCH_THRESHOLD = 0.2
+RANSAC_THRESHOLD = 10.0
+MIN_MATCH_COUNT = 3 
