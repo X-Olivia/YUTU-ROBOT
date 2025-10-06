@@ -1,3 +1,17 @@
+### Overview
+
+
+| Direction | Key Idea | Representative Model / Method | Technical Contribution |
+|------------|-----------|--------------------------------|-------------------------|
+| **Naïve Substitution** | Convert time-series data directly into tokens and feed them to an LLM | Early GPT-based forecasters | Negative experimental results reveal the gap between semantic pretraining and numerical sequences. |
+| **Task Reprogramming** | Freeze the LLM and adapt temporal information through external modules | **TIME-LLM** | Activates zero-shot forecasting ability via cross-attention and textual context. |
+| **Statistical Alignment** | Align time-series statistical features first, then fine-tune a small subset of parameters | **LLM4TS** | Two-stage training with multi-scale temporal embeddings; achieves superior performance using only 5% of the data. |
+| **Multi-Agent System** | Deploy multiple agents specializing in theme, semantic, and pattern analysis | **LLM-based Qualitative Analysis System** | Enables automated research analysis across textual and structured data. |
+| **Central Hub** | Use the LLM as the core for context, memory, and reasoning | **LLM-Centric Time Series Framework** | Unifies forecasting, anomaly detection, and decision-making tasks within a single intelligent architecture. |
+
+---
+
+
 ### "Are Language Models Actually Useful for Time Series Forecasting?" 2024
 
 **Are LLMs Overhyped for Time Series Forecasting?**  
@@ -10,14 +24,26 @@ This paper empirically challenges the recent enthusiasm for plugging large langu
 **A Roadmap for LLM-Driven Time Series Analytics**  
 This comprehensive survey catalogs and taxonomizes the rapidly growing literature that repurposes large language models (LLMs) for time-series tasks. It organizes existing work into five methodological strands—direct querying, tokenization design, prompt engineering, fine-tuning strategies, and deep-feature integration—and reviews domain-specific deployments in finance, healthcare, traffic and beyond. Alongside a unified pipeline and reproducible GitHub resource, the paper highlights open challenges: better temporal tokenizers, interpretable forecasts, multi-modal fusion, domain generalization, scaling laws, agent-based decision making, and bias/safety safeguards. Rather than dismissing LLMs, the survey positions them as flexible, context-aware components whose true potential for sequential data will be unlocked by targeted research on these fronts.
 
+---
+
 ### LLM4TS: Making Pre-trained Language Models Work for Time Series 2025
 
 **LLM4TS** introduces a lightweight, two-stage recipe that turns a frozen GPT-2 into a data-efficient forecaster: first it aligns the model to time-series statistics via an autoregressive patch-reconstruction objective, then it fine-tunes only 4 % of its parameters (LoRA + LayerNorm) for downstream prediction. By equipping every patch with a novel two-level multi-scale temporal embedding (seconds → holidays, then pooled across the patch), the framework captures seasonality and calendar effects that vanilla LLMs ignore. On seven long-horizon benchmarks LLM4TS outperforms both Transformers trained from scratch and recent LLM-based rivals in full-shot regimes, and needs only 5 % of the data to beat the best 10 % baselines, while training and inference run faster than comparable Transformer models. Ablation studies confirm that freezing pre-trained weights, the alignment stage and the temporal encoder are all critical for few-shot excellence, validating that careful adaptation—not scale—unlocks LLMs for time-series tasks.
+
+---
 
 ### TIME-LLM: Reprogramming LLMs into Zero-Shot Time-Series Experts 2024
 
 TIME-LLM treats forecasting as a language task: it freezes a Llama-7B backbone, aligns short patches of normalized time series to a lean set of learned text prototypes via cross-attention, and prepends natural-language context (domain, task, statistics) to activate the LLM’s reasoning. Without updating any LLM weights the method outperforms specialized Transformers, GPT4TS and LLMTime on 36/40 long-horizon benchmarks, delivers 5–22 % error reduction in 5 %/zero-shot regimes, and trains 25 % faster than QLoRA while using < 1 % of the backbone parameters, demonstrating that reprogramming suffices to turn an off-the-shelf LLM into a powerful, data-efficient forecaster.
 
+---
+
 ### "Automating Qualitative Data Analysis with LLM-Based Multi-Agent Systems" 2024
 
 This paper introduces a novel multi-agent system powered by Large Language Models (LLMs) to automate qualitative data analysis in software engineering. By deploying specialized agents for tasks such as thematic, narrative, content, discourse, and grounded theory analysis, the system efficiently processes diverse textual inputs—including documents, interviews, and online discussions—delivering structured insights in minutes. Validated by ten practitioners across domains, the model achieved an 87% satisfaction rate, demonstrating significant improvements in analysis speed, scalability, and accuracy. This approach marks a transformative shift toward AI-driven, automated qualitative research methodologies.
+
+---
+
+**LLMs as the Central Hub for Next-Generation Time Series Analysis**
+
+This paper presents a visionary perspective on integrating Large Language Models (LLMs) into time series analysis, advocating for their role as universal enhancers, predictors, and agents. By systematically reviewing existing methods and conducting empirical evaluations, the authors demonstrate LLMs' potential to transcend traditional task-specific models and drive general-purpose time series intelligence. They also highlight key challenges such as hallucination, bias, and scalability, while proposing future directions including multi-agent systems, domain knowledge injection, and lifelong learning. Ultimately, this work calls for a paradigm shift toward LLM-centric time series analysis to unlock more interpretable, adaptive, and intelligent analytical systems.
