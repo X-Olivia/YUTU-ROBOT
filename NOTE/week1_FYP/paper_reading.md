@@ -26,7 +26,7 @@ This comprehensive survey catalogs and taxonomizes the rapidly growing literatur
 
 ---
 
-### LLM4TS: Making Pre-trained Language Models Work for Time Series 2025
+### LLM4TS: Aligning Pre-trained Language Models Work for Time Series 2025
 
 **LLM4TS** introduces a lightweight, two-stage recipe that turns a frozen GPT-2 into a data-efficient forecaster: first it aligns the model to time-series statistics via an autoregressive patch-reconstruction objective, then it fine-tunes only 4 % of its parameters (LoRA + LayerNorm) for downstream prediction. By equipping every patch with a novel two-level multi-scale temporal embedding (seconds → holidays, then pooled across the patch), the framework captures seasonality and calendar effects that vanilla LLMs ignore. On seven long-horizon benchmarks LLM4TS outperforms both Transformers trained from scratch and recent LLM-based rivals in full-shot regimes, and needs only 5 % of the data to beat the best 10 % baselines, while training and inference run faster than comparable Transformer models. Ablation studies confirm that freezing pre-trained weights, the alignment stage and the temporal encoder are all critical for few-shot excellence, validating that careful adaptation—not scale—unlocks LLMs for time-series tasks.
 
@@ -38,12 +38,12 @@ TIME-LLM treats forecasting as a language task: it freezes a Llama-7B backbone, 
 
 ---
 
-### "Automating Qualitative Data Analysis with LLM-Based Multi-Agent Systems" 2024
+### "Can Large Language Models Serve as Data Analysts? A Multi-Agent Assisted Approach for Qualitative Data Analysis" 2024
 
 This paper introduces a novel multi-agent system powered by Large Language Models (LLMs) to automate qualitative data analysis in software engineering. By deploying specialized agents for tasks such as thematic, narrative, content, discourse, and grounded theory analysis, the system efficiently processes diverse textual inputs—including documents, interviews, and online discussions—delivering structured insights in minutes. Validated by ten practitioners across domains, the model achieved an 87% satisfaction rate, demonstrating significant improvements in analysis speed, scalability, and accuracy. This approach marks a transformative shift toward AI-driven, automated qualitative research methodologies.
 
 ---
 
-**LLMs as the Central Hub for Next-Generation Time Series Analysis**
+### What Can Large Language Models Tell Us about Time Series Analysis
 
 This paper presents a visionary perspective on integrating Large Language Models (LLMs) into time series analysis, advocating for their role as universal enhancers, predictors, and agents. By systematically reviewing existing methods and conducting empirical evaluations, the authors demonstrate LLMs' potential to transcend traditional task-specific models and drive general-purpose time series intelligence. They also highlight key challenges such as hallucination, bias, and scalability, while proposing future directions including multi-agent systems, domain knowledge injection, and lifelong learning. Ultimately, this work calls for a paradigm shift toward LLM-centric time series analysis to unlock more interpretable, adaptive, and intelligent analytical systems.
